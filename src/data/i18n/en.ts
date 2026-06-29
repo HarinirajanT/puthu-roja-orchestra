@@ -103,9 +103,9 @@ export const en: Translations = {
       { id: "live", title: "Live Performance", titleTamil: "நேரடி நிகழ்ச்சி" },
       { id: "family", title: "Family Performance", titleTamil: "குடும்ப நிகழ்ச்சி" },
       { id: "hindi", title: "Hindi Song", titleTamil: "ஹிந்தி பாடல்" },
-      { id: "tamil", title: "Tamil Song", titleTamil: "தமிழ் பாடல்" },
-      { id: "stage", title: "Stage Performance", titleTamil: "மேடை நிகழ்ச்சி" },
-      { id: "orchestra", title: "Orchestra Performance", titleTamil: "ஆர்க்கஸ்ட்ரா நிகழ்ச்சி" },
+      { id: "tamil", title: "Tamil Song — Live", titleTamil: "தமிழ் பாடல் — நேரடி" },
+      { id: "religious", title: "Religious Song", titleTamil: "பக்தி பாடல்" },
+      { id: "tamil-song", title: "Tamil Song", titleTamil: "தமிழ் பாடல்" },
     ],
   },
   services: {

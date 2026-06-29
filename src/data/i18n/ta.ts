@@ -82,9 +82,9 @@ export const ta: Translations = {
       { id: "live", title: "நேரடி நிகழ்ச்சி", titleTamil: "நேரடி நிகழ்ச்சி" },
       { id: "family", title: "குடும்ப நிகழ்ச்சி", titleTamil: "குடும்ப நிகழ்ச்சி" },
       { id: "hindi", title: "ஹிந்தி பாடல்", titleTamil: "ஹிந்தி பாடல்" },
-      { id: "tamil", title: "தமிழ் பாடல்", titleTamil: "தமிழ் பாடல்" },
-      { id: "stage", title: "மேடை நிகழ்ச்சி", titleTamil: "மேடை நிகழ்ச்சி" },
-      { id: "orchestra", title: "ஆர்க்கஸ்ட்ரா நிகழ்ச்சி", titleTamil: "ஆர்க்கஸ்ட்ரா நிகழ்ச்சி" },
+      { id: "tamil", title: "தமிழ் பாடல் — நேரடி", titleTamil: "தமிழ் பாடல் — நேரடி" },
+      { id: "religious", title: "பக்தி பாடல்", titleTamil: "பக்தி பாடல்" },
+      { id: "tamil-song", title: "தமிழ் பாடல்", titleTamil: "தமிழ் பாடல்" },
     ],
   },
   services: {
