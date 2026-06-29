@@ -45,9 +45,9 @@ export function Hero() {
         style={{ transformOrigin: "top center" }}
       />
 
-      <div className="absolute inset-0 z-0">
+      <div className="absolute inset-0 z-0 overflow-hidden">
         <SiteImage
-          image={images.promoBanner}
+          image={images.heroBackground}
           alt={t.founder.title}
           fill
           className="object-cover opacity-20"

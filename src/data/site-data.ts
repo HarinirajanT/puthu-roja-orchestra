@@ -31,6 +31,10 @@ export const images = {
     src: "/images/promo-banner.png",
     objectPosition: "20% center",
   },
+  heroBackground: {
+    src: "/images/promo-banner.png",
+    objectPosition: "22% top",
+  },
   founderPortrait: {
     src: "/images/rajan-portrait-vintage.png",
     objectPosition: "center 20%",
