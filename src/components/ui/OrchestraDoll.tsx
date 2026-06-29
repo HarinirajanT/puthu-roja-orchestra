@@ -6,6 +6,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { X, MessageCircle, Volume2, Video, Loader2 } from "lucide-react";
 import { dollConfig } from "@/data/doll-config";
 import { playDollVoiceLine, stopDollVoice } from "@/lib/doll-voice";
+import { assetPath } from "@/lib/asset-path";
 
 function DollSvg({ singing }: { singing: boolean }) {
   return (
@@ -60,7 +61,7 @@ function DollAvatar({ singing }: { singing: boolean }) {
     return (
       <div className="relative h-full w-full">
         <Image
-          src={dollConfig.customArt}
+          src={assetPath(dollConfig.customArt)}
           alt={dollConfig.name}
           fill
           className="object-contain object-bottom drop-shadow-lg"
@@ -260,7 +261,7 @@ export function OrchestraDoll() {
               <div className="relative aspect-[9/16] w-full bg-black sm:aspect-video">
                 {useLocalVideo ? (
                   <video
-                    src={dollConfig.welcomeVideo}
+                    src={assetPath(dollConfig.welcomeVideo)}
                     controls
                     autoPlay
                     playsInline

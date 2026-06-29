@@ -4,6 +4,7 @@ import { useRef } from "react";
 import { motion } from "framer-motion";
 import { performanceVideos } from "@/data/performance-videos";
 import { useLanguage } from "@/context/LanguageProvider";
+import { assetPath } from "@/lib/asset-path";
 import { SectionHeading } from "./ui/SectionHeading";
 
 const MAX_SECONDS = 60;
@@ -38,7 +39,7 @@ function PerformanceVideoCard({
       <div className="relative aspect-video w-full bg-black">
         <video
           ref={videoRef}
-          src={video.src}
+          src={assetPath(video.src)}
           controls
           playsInline
           preload="metadata"

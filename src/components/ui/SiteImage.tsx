@@ -1,5 +1,6 @@
 import Image, { type ImageProps } from "next/image";
 import type { SiteImage as SiteImageType } from "@/data/site-data";
+import { assetPath } from "@/lib/asset-path";
 
 type SiteImageProps = Omit<ImageProps, "src" | "alt"> & {
   image: SiteImageType;
@@ -9,7 +10,7 @@ type SiteImageProps = Omit<ImageProps, "src" | "alt"> & {
 export function SiteImage({ image, alt, className, style, ...props }: SiteImageProps) {
   return (
     <Image
-      src={image.src}
+      src={assetPath(image.src)}
       alt={alt}
       className={className}
       style={{

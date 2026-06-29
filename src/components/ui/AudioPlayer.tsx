@@ -3,6 +3,7 @@
 import { useState, useRef, useEffect } from "react";
 import { Play, Pause, Volume2 } from "lucide-react";
 import { siteConfig } from "@/data/site-data";
+import { assetPath } from "@/lib/asset-path";
 import { useLanguage } from "@/context/LanguageProvider";
 
 export function AudioPlayer() {
@@ -12,7 +13,7 @@ export function AudioPlayer() {
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
   useEffect(() => {
-    const audio = new Audio(siteConfig.sampleAudio);
+    const audio = new Audio(assetPath(siteConfig.sampleAudio));
     audioRef.current = audio;
 
     audio.addEventListener("canplaythrough", () => setReady(true));
