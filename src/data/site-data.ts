@@ -45,7 +45,7 @@ export const images = {
   },
   reunion: {
     src: "/images/performance-reunion.png",
-    objectPosition: "center center",
+    objectPosition: "center 20%",
   },
   duet: {
     src: "/images/performance-duet.png",
