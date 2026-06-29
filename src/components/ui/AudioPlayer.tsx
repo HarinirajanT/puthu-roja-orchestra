@@ -3,8 +3,10 @@
 import { useState, useRef, useEffect } from "react";
 import { Play, Pause, Volume2 } from "lucide-react";
 import { siteConfig } from "@/data/site-data";
+import { useLanguage } from "@/context/LanguageProvider";
 
 export function AudioPlayer() {
+  const { t } = useLanguage();
   const [playing, setPlaying] = useState(false);
   const [ready, setReady] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
@@ -55,7 +57,7 @@ export function AudioPlayer() {
         )}
       </span>
       <span className="text-sm font-medium text-cream/90">
-        {playing ? "Playing..." : "Hear Rajan Sing"}
+        {playing ? t.hero.playing : t.hero.hearSing}
       </span>
       <Volume2 size={14} className="text-gold/60" />
     </button>

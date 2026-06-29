@@ -1,6 +1,7 @@
 import type { NextConfig } from "next";
 
-const isGitHubPages = process.env.GITHUB_PAGES === "true";
+const useCustomDomain = process.env.CUSTOM_DOMAIN === "true";
+const isGitHubPages = process.env.GITHUB_PAGES === "true" && !useCustomDomain;
 const basePath = isGitHubPages ? "/puthu-roja-orchestra" : "";
 
 const nextConfig: NextConfig = {

@@ -11,6 +11,7 @@ import { FAQ } from "@/components/FAQ";
 import { Booking } from "@/components/Booking";
 import { Footer } from "@/components/Footer";
 import { OrchestraDoll } from "@/components/ui/OrchestraDoll";
+import { WhatsAppFab } from "@/components/ui/WhatsAppFab";
 
 export default function Home() {
   return (
@@ -27,6 +28,7 @@ export default function Home() {
       <FAQ />
       <Booking />
       <Footer />
+      <WhatsAppFab />
       <OrchestraDoll />
     </main>
   );

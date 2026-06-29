@@ -1,23 +1,25 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { story } from "@/data/site-data";
+import { useLanguage } from "@/context/LanguageProvider";
 import { SectionHeading } from "./ui/SectionHeading";
 
 export function Story() {
+  const { t } = useLanguage();
+
   return (
     <section id="story" className="relative bg-cream py-24 md:py-32">
       <div className="absolute top-0 right-0 left-0 h-24 bg-gradient-to-b from-dark-brown to-transparent opacity-10" />
 
       <div className="mx-auto max-w-4xl px-6 lg:px-8">
         <SectionHeading
-          label="Our Story"
-          title={story.headline}
-          subtitle={story.subheadline}
+          label={t.story.label}
+          title={t.story.headline}
+          subtitle={t.story.subheadline}
         />
 
         <div className="space-y-8">
-          {story.paragraphs.map((paragraph, i) => (
+          {t.story.paragraphs.map((paragraph, i) => (
             <motion.p
               key={i}
               initial={{ opacity: 0, y: 30 }}
@@ -43,11 +45,11 @@ export function Story() {
           className="mt-16 rounded-2xl border border-gold/20 bg-ivory p-8 text-center shadow-lg shadow-gold/5 md:p-12"
         >
           <p className="font-[family-name:var(--font-cormorant)] text-2xl italic text-maroon md:text-3xl">
-            &ldquo;Music That Creates Memories&rdquo;
+            &ldquo;{t.story.quote}&rdquo;
           </p>
           <div className="mx-auto mt-4 h-px w-12 bg-gold" />
           <p className="mt-4 text-sm uppercase tracking-[0.2em] text-dark-brown/50">
-            — Puthu Roja Orchestra
+            {t.story.quoteBy}
           </p>
         </motion.div>
       </div>

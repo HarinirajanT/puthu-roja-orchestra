@@ -1,18 +1,21 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { founder } from "@/data/site-data";
+import { useLanguage } from "@/context/LanguageProvider";
 import { SectionHeading } from "./ui/SectionHeading";
 import { SiteImage } from "./ui/SiteImage";
+import { founder } from "@/data/site-data";
 
 export function Founder() {
+  const { t } = useLanguage();
+
   return (
     <section id="founder" className="relative bg-ivory py-24 md:py-32">
       <div className="mx-auto max-w-6xl px-6 lg:px-8">
         <SectionHeading
-          label="The Founder"
-          title={founder.name}
-          subtitle={founder.title}
+          label={t.founder.label}
+          title={t.founder.title}
+          subtitle={t.founder.titleRole}
         />
 
         <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
@@ -27,7 +30,7 @@ export function Founder() {
             <div className="relative aspect-[3/4] overflow-hidden rounded-2xl shadow-2xl shadow-maroon/10">
               <SiteImage
                 image={founder.portrait}
-                alt={founder.name}
+                alt={t.founder.title}
                 fill
                 className="object-cover"
                 sizes="(max-width: 1024px) 80vw, 480px"
@@ -36,10 +39,10 @@ export function Founder() {
             </div>
             <div className="absolute -right-4 -bottom-4 rounded-xl border border-gold/30 bg-cream px-6 py-4 shadow-lg">
               <p className="font-[family-name:var(--font-cormorant)] text-3xl font-bold text-maroon">
-                Since 1996
+                {t.founder.sinceBadge}
               </p>
               <p className="text-xs uppercase tracking-wider text-dark-brown/50">
-                Musical Excellence
+                {t.founder.excellence}
               </p>
             </div>
           </motion.div>
@@ -51,11 +54,11 @@ export function Founder() {
             transition={{ duration: 0.8, delay: 0.2 }}
           >
             <div className="space-y-6">
-              {founder.story.map((paragraph, i) => (
+              {t.founder.story.map((paragraph, i) => (
                 <p
                   key={i}
                   className={`leading-relaxed text-dark-brown/80 ${
-                    i === founder.story.length - 1
+                    i === t.founder.story.length - 1
                       ? "font-[family-name:var(--font-cormorant)] text-2xl font-medium text-maroon"
                       : "text-lg"
                   }`}
@@ -66,7 +69,7 @@ export function Founder() {
             </div>
 
             <div className="mt-10 grid grid-cols-2 gap-4 sm:grid-cols-4">
-              {founder.stats.map((stat) => (
+              {t.founder.stats.map((stat) => (
                 <div
                   key={stat.label}
                   className="rounded-xl border border-gold/15 bg-cream p-4 text-center"

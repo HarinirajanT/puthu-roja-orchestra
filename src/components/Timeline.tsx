@@ -2,19 +2,22 @@
 
 import { motion } from "framer-motion";
 import { journeyChapters } from "@/data/site-data";
+import { useLanguage } from "@/context/LanguageProvider";
 import { SectionHeading } from "./ui/SectionHeading";
 import { SiteImage } from "./ui/SiteImage";
 
 export function Timeline() {
+  const { t } = useLanguage();
+
   return (
     <section id="journey" className="relative bg-dark-brown py-24 md:py-32">
       <div className="spotlight absolute inset-0 opacity-50" />
 
       <div className="relative mx-auto w-full max-w-5xl px-6 lg:px-8">
         <SectionHeading
-          label="Our Journey"
-          title="Nearly Three Decades of Music"
-          subtitle="A story built on passion, trust, and unforgettable celebrations — no numbers needed, just memories"
+          label={t.journey.label}
+          title={t.journey.title}
+          subtitle={t.journey.subtitle}
           light
         />
 
@@ -24,6 +27,7 @@ export function Timeline() {
           <div className="space-y-12 md:space-y-16">
             {journeyChapters.map((chapter, i) => {
               const isEven = i % 2 === 0;
+              const copy = t.journey.chapters.find((c) => c.id === chapter.id)!;
 
               return (
                 <motion.div
@@ -42,7 +46,7 @@ export function Timeline() {
                     <div className="relative aspect-[16/10] overflow-hidden rounded-2xl border border-gold/20 shadow-xl">
                       <SiteImage
                         image={chapter.image}
-                        alt={chapter.title}
+                        alt={copy.title}
                         fill
                         sizes="(max-width: 768px) 100vw, 480px"
                         className="object-cover"
@@ -60,13 +64,13 @@ export function Timeline() {
                     }`}
                   >
                     <span className="text-xs font-semibold uppercase tracking-[0.25em] text-gold">
-                      {chapter.highlight}
+                      {copy.highlight}
                     </span>
                     <h3 className="mt-2 font-[family-name:var(--font-cormorant)] text-2xl font-semibold text-ivory sm:text-3xl">
-                      {chapter.title}
+                      {copy.title}
                     </h3>
-                    <p className="mt-1 text-sm text-gold/70">{chapter.titleTamil}</p>
-                    <p className="mt-4 leading-relaxed text-cream/70">{chapter.description}</p>
+                    <p className="mt-1 text-sm text-gold/70">{copy.titleTamil}</p>
+                    <p className="mt-4 leading-relaxed text-cream/70">{copy.description}</p>
                   </div>
                 </motion.div>
               );
@@ -80,7 +84,7 @@ export function Timeline() {
           viewport={{ once: true }}
           className="mt-16 text-center font-[family-name:var(--font-cormorant)] text-xl text-gold/80 italic sm:text-2xl"
         >
-          &ldquo;From Tradition to Trendy... We Make Every Moment Unforgettable.&rdquo;
+          &ldquo;{t.journey.closingQuote}&rdquo;
         </motion.p>
       </div>
     </section>

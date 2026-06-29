@@ -3,23 +3,24 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronDown } from "lucide-react";
-import { faqs } from "@/data/site-data";
+import { useLanguage } from "@/context/LanguageProvider";
 import { SectionHeading } from "./ui/SectionHeading";
 
 export function FAQ() {
+  const { t } = useLanguage();
   const [open, setOpen] = useState<number | null>(0);
 
   return (
     <section id="faq" className="relative bg-ivory py-24 md:py-32">
       <div className="mx-auto max-w-3xl px-6 lg:px-8">
         <SectionHeading
-          label="FAQ"
-          title="Frequently Asked Questions"
-          subtitle="Everything you need to know before booking"
+          label={t.faq.label}
+          title={t.faq.title}
+          subtitle={t.faq.subtitle}
         />
 
         <div className="space-y-3">
-          {faqs.map((faq, i) => (
+          {t.faq.items.map((faq, i) => (
             <div
               key={i}
               className="overflow-hidden rounded-xl border border-gold/15 bg-cream/50"

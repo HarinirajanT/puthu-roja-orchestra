@@ -4,13 +4,16 @@ import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import gsap from "gsap";
 import { ChevronDown, Play } from "lucide-react";
-import { siteConfig, founder } from "@/data/site-data";
+import { siteConfig } from "@/data/site-data";
+import { useLanguage } from "@/context/LanguageProvider";
 import { GoldButton } from "./ui/SectionHeading";
 import { Petals } from "./ui/Petals";
 import { AudioPlayer } from "./ui/AudioPlayer";
 import { SiteImage } from "./ui/SiteImage";
+import { images } from "@/data/site-data";
 
 export function Hero() {
+  const { t } = useLanguage();
   const curtainRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -44,8 +47,8 @@ export function Hero() {
 
       <div className="absolute inset-0 z-0">
         <SiteImage
-          image={founder.image}
-          alt={founder.name}
+          image={images.promoBanner}
+          alt={t.founder.title}
           fill
           className="object-cover opacity-20"
           priority
@@ -60,7 +63,7 @@ export function Hero() {
           transition={{ delay: 2.2, duration: 0.8 }}
           className="mb-4 text-xs font-semibold uppercase tracking-[0.4em] text-gold"
         >
-          Since {siteConfig.founded}
+          {t.hero.since} {siteConfig.founded}
         </motion.p>
 
         <motion.h1
@@ -69,9 +72,9 @@ export function Hero() {
           transition={{ delay: 2.4, duration: 0.8 }}
           className="font-[family-name:var(--font-cormorant)] text-5xl leading-tight font-semibold text-ivory md:text-7xl lg:text-8xl"
         >
-          Creating Musical
+          {t.hero.line1}
           <br />
-          <span className="text-gradient-gold italic">Memories</span>
+          <span className="text-gradient-gold italic">{t.hero.line2}</span>
         </motion.h1>
 
         <motion.p
@@ -80,7 +83,7 @@ export function Hero() {
           transition={{ delay: 2.7, duration: 0.8 }}
           className="mx-auto mt-6 max-w-xl text-lg text-cream/70 md:text-xl"
         >
-          {siteConfig.subtitle}
+          {t.hero.subtitle}
         </motion.p>
 
         <motion.div
@@ -90,10 +93,10 @@ export function Hero() {
           className="mt-8"
         >
           <p className="font-[family-name:var(--font-cormorant)] text-2xl text-gold md:text-3xl">
-            {founder.name}
+            {t.founder.title}
           </p>
           <p className="mt-1 text-sm uppercase tracking-[0.2em] text-cream/50">
-            {founder.title}
+            {t.founder.titleRole}
           </p>
         </motion.div>
 
@@ -103,10 +106,10 @@ export function Hero() {
           transition={{ delay: 3.3, duration: 0.8 }}
           className="mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center"
         >
-          <GoldButton href="#booking">Book Your Event</GoldButton>
+          <GoldButton href="#booking">{t.hero.bookEvent}</GoldButton>
           <GoldButton href="#songs" variant="outline">
             <Play size={16} />
-            Watch Live
+            {t.hero.watchLive}
           </GoldButton>
         </motion.div>
 

@@ -2,24 +2,26 @@
 
 import { motion } from "framer-motion";
 import { Star } from "lucide-react";
-import { testimonials } from "@/data/site-data";
+import { useLanguage } from "@/context/LanguageProvider";
 import { SectionHeading } from "./ui/SectionHeading";
 
 export function Testimonials() {
+  const { t } = useLanguage();
+
   return (
     <section id="testimonials" className="relative bg-maroon py-24 md:py-32">
       <div className="spotlight absolute inset-0 opacity-30" />
 
       <div className="relative mx-auto max-w-7xl px-6 lg:px-8">
         <SectionHeading
-          label="Testimonials"
-          title="Words from Our Families"
-          subtitle="Real stories from celebrations we've been part of"
+          label={t.testimonials.label}
+          title={t.testimonials.title}
+          subtitle={t.testimonials.subtitle}
           light
         />
 
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {testimonials.map((t, i) => (
+          {t.testimonials.items.map((item, i) => (
             <motion.div
               key={i}
               initial={{ opacity: 0, y: 30 }}
@@ -33,21 +35,21 @@ export function Testimonials() {
               </div>
 
               <div className="mb-4 flex gap-1">
-                {Array.from({ length: t.rating }).map((_, j) => (
+                {Array.from({ length: 5 }).map((_, j) => (
                   <Star key={j} size={14} className="fill-gold text-gold" />
                 ))}
               </div>
 
               <p className="relative text-cream/90 leading-relaxed italic">
-                &ldquo;{t.quote}&rdquo;
+                &ldquo;{item.quote}&rdquo;
               </p>
 
               <div className="mt-6 border-t border-gold/10 pt-6">
                 <p className="font-[family-name:var(--font-cormorant)] text-lg font-semibold text-ivory">
-                  — {t.author}
+                  — {item.author}
                 </p>
                 <p className="mt-1 text-xs text-cream/50">
-                  {t.event} · {t.location} · {t.year}
+                  {item.event} · {item.location}
                 </p>
               </div>
             </motion.div>

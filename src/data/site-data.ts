@@ -6,6 +6,7 @@ export type SiteImage = {
 
 export const siteConfig = {
   name: "Puthu Roja Orchestra",
+  domain: "puthurojaorchestra.com",
   tagline: "Creating Musical Memories Since 1996",
   subtitle: "Live Music for Every Special Occasion",
   quote: "From Tradition to Trendy... We Make Every Moment Unforgettable.",

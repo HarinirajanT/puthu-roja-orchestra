@@ -126,7 +126,7 @@ export function OrchestraDoll() {
 
   return (
     <>
-      <div className="fixed right-3 bottom-20 z-50 flex flex-col items-end gap-2 sm:right-6 sm:bottom-6">
+      <div className="fixed right-3 bottom-28 z-50 flex flex-col items-end gap-2 sm:right-6 sm:bottom-6">
         <AnimatePresence>
           {open && (
             <motion.div

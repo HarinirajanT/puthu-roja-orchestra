@@ -3,7 +3,8 @@
 import { useForm } from "react-hook-form";
 import { motion } from "framer-motion";
 import { Phone, MessageCircle, MapPin, ExternalLink } from "lucide-react";
-import { siteConfig, services } from "@/data/site-data";
+import { siteConfig } from "@/data/site-data";
+import { useLanguage } from "@/context/LanguageProvider";
 import { SectionHeading, GoldButton } from "./ui/SectionHeading";
 
 interface BookingForm {
@@ -16,6 +17,7 @@ interface BookingForm {
 }
 
 export function Booking() {
+  const { t } = useLanguage();
   const {
     register,
     handleSubmit,
@@ -24,10 +26,18 @@ export function Booking() {
   } = useForm<BookingForm>();
 
   const onSubmit = async (data: BookingForm) => {
-    const text = encodeURIComponent(
-      `New Booking Request\n\nName: ${data.name}\nPhone: ${data.phone}\nEvent: ${data.eventType}\nDate: ${data.date}\nLocation: ${data.location}\nMessage: ${data.message}`
+    const text = t.booking.whatsappTemplate
+      .replace("{name}", data.name)
+      .replace("{phone}", data.phone)
+      .replace("{eventType}", data.eventType)
+      .replace("{date}", data.date)
+      .replace("{location}", data.location)
+      .replace("{message}", data.message || "—");
+
+    window.open(
+      `https://wa.me/${siteConfig.whatsapp}?text=${encodeURIComponent(text)}`,
+      "_blank"
     );
-    window.open(`https://wa.me/${siteConfig.whatsapp}?text=${text}`, "_blank");
     reset();
   };
 
@@ -37,9 +47,9 @@ export function Booking() {
 
       <div className="relative mx-auto max-w-6xl px-6 lg:px-8">
         <SectionHeading
-          label="Book Now"
-          title="Let's Create Your Next Memory"
-          subtitle="Book Puthu Roja Orchestra for your celebration"
+          label={t.booking.label}
+          title={t.booking.title}
+          subtitle={t.booking.subtitle}
           light
         />
 
@@ -58,7 +68,7 @@ export function Booking() {
                 <Phone size={20} className="text-gold" />
               </div>
               <div>
-                <p className="text-xs uppercase tracking-wider text-cream/50">Call Us</p>
+                <p className="text-xs uppercase tracking-wider text-cream/50">{t.booking.callUs}</p>
                 <p className="font-[family-name:var(--font-cormorant)] text-2xl font-bold text-ivory">
                   {siteConfig.phone}
                 </p>
@@ -75,8 +85,8 @@ export function Booking() {
                 <MessageCircle size={20} className="text-gold" />
               </div>
               <div>
-                <p className="text-xs uppercase tracking-wider text-cream/50">WhatsApp</p>
-                <p className="text-lg font-medium text-ivory">Message Us Directly</p>
+                <p className="text-xs uppercase tracking-wider text-cream/50">{t.booking.whatsapp}</p>
+                <p className="text-lg font-medium text-ivory">{t.booking.messageDirect}</p>
               </div>
             </a>
 
@@ -85,7 +95,7 @@ export function Booking() {
                 <MapPin size={20} className="text-gold" />
               </div>
               <div>
-                <p className="text-xs uppercase tracking-wider text-cream/50">Location</p>
+                <p className="text-xs uppercase tracking-wider text-cream/50">{t.booking.location}</p>
                 <p className="text-lg font-medium text-ivory">{siteConfig.location}</p>
                 <p className="text-sm text-cream/50">{siteConfig.serviceArea}</p>
               </div>
@@ -101,7 +111,7 @@ export function Booking() {
                 <ExternalLink size={20} className="text-gold" />
               </div>
               <div>
-                <p className="text-xs uppercase tracking-wider text-cream/50">Instagram</p>
+                <p className="text-xs uppercase tracking-wider text-cream/50">{t.booking.instagram}</p>
                 <p className="text-lg font-medium text-ivory">@thiru_pathirajan</p>
               </div>
             </a>
@@ -117,12 +127,12 @@ export function Booking() {
             <div className="grid gap-5 sm:grid-cols-2">
               <div>
                 <label className="mb-2 block text-xs font-medium uppercase tracking-wider text-cream/50">
-                  Your Name
+                  {t.booking.yourName}
                 </label>
                 <input
-                  {...register("name", { required: "Name is required" })}
+                  {...register("name", { required: t.booking.errors.name })}
                   className="w-full rounded-xl border border-gold/15 bg-dark-brown/40 px-4 py-3 text-ivory placeholder:text-cream/30 focus:border-gold/40 focus:outline-none"
-                  placeholder="Enter your name"
+                  placeholder={t.booking.namePlaceholder}
                 />
                 {errors.name && (
                   <p className="mt-1 text-xs text-red-400">{errors.name.message}</p>
@@ -130,12 +140,12 @@ export function Booking() {
               </div>
               <div>
                 <label className="mb-2 block text-xs font-medium uppercase tracking-wider text-cream/50">
-                  Phone Number
+                  {t.booking.phone}
                 </label>
                 <input
-                  {...register("phone", { required: "Phone is required" })}
+                  {...register("phone", { required: t.booking.errors.phone })}
                   className="w-full rounded-xl border border-gold/15 bg-dark-brown/40 px-4 py-3 text-ivory placeholder:text-cream/30 focus:border-gold/40 focus:outline-none"
-                  placeholder="Your phone number"
+                  placeholder={t.booking.phonePlaceholder}
                 />
                 {errors.phone && (
                   <p className="mt-1 text-xs text-red-400">{errors.phone.message}</p>
@@ -146,17 +156,17 @@ export function Booking() {
             <div className="grid gap-5 sm:grid-cols-2">
               <div>
                 <label className="mb-2 block text-xs font-medium uppercase tracking-wider text-cream/50">
-                  Event Type
+                  {t.booking.eventType}
                 </label>
                 <select
-                  {...register("eventType", { required: "Please select an event type" })}
+                  {...register("eventType", { required: t.booking.errors.eventType })}
                   className="w-full rounded-xl border border-gold/15 bg-dark-brown/40 px-4 py-3 text-ivory focus:border-gold/40 focus:outline-none"
                   defaultValue=""
                 >
                   <option value="" disabled>
-                    Select event type
+                    {t.booking.selectEvent}
                   </option>
-                  {services.map((s) => (
+                  {t.services.items.map((s) => (
                     <option key={s.id} value={s.title}>
                       {s.title}
                     </option>
@@ -168,11 +178,11 @@ export function Booking() {
               </div>
               <div>
                 <label className="mb-2 block text-xs font-medium uppercase tracking-wider text-cream/50">
-                  Event Date
+                  {t.booking.eventDate}
                 </label>
                 <input
                   type="date"
-                  {...register("date", { required: "Date is required" })}
+                  {...register("date", { required: t.booking.errors.date })}
                   className="w-full rounded-xl border border-gold/15 bg-dark-brown/40 px-4 py-3 text-ivory focus:border-gold/40 focus:outline-none"
                 />
                 {errors.date && (
@@ -183,12 +193,12 @@ export function Booking() {
 
             <div>
               <label className="mb-2 block text-xs font-medium uppercase tracking-wider text-cream/50">
-                Event Location
+                {t.booking.eventLocation}
               </label>
               <input
-                {...register("location", { required: "Location is required" })}
+                {...register("location", { required: t.booking.errors.location })}
                 className="w-full rounded-xl border border-gold/15 bg-dark-brown/40 px-4 py-3 text-ivory placeholder:text-cream/30 focus:border-gold/40 focus:outline-none"
-                placeholder="City / Venue name"
+                placeholder={t.booking.locationPlaceholder}
               />
               {errors.location && (
                 <p className="mt-1 text-xs text-red-400">{errors.location.message}</p>
@@ -197,18 +207,18 @@ export function Booking() {
 
             <div>
               <label className="mb-2 block text-xs font-medium uppercase tracking-wider text-cream/50">
-                Message
+                {t.booking.message}
               </label>
               <textarea
                 {...register("message")}
                 rows={4}
                 className="w-full resize-none rounded-xl border border-gold/15 bg-dark-brown/40 px-4 py-3 text-ivory placeholder:text-cream/30 focus:border-gold/40 focus:outline-none"
-                placeholder="Tell us about your event..."
+                placeholder={t.booking.messagePlaceholder}
               />
             </div>
 
             <GoldButton type="submit" className="w-full sm:w-auto">
-              {isSubmitting ? "Sending..." : "Book Now via WhatsApp"}
+              {isSubmitting ? t.booking.sending : t.booking.submit}
             </GoldButton>
           </motion.form>
         </div>

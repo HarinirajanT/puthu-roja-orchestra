@@ -3,6 +3,7 @@
 import { useRef } from "react";
 import { motion } from "framer-motion";
 import { performanceVideos } from "@/data/performance-videos";
+import { useLanguage } from "@/context/LanguageProvider";
 import { SectionHeading } from "./ui/SectionHeading";
 
 const MAX_SECONDS = 60;
@@ -14,7 +15,9 @@ function PerformanceVideoCard({
   video: (typeof performanceVideos)[number];
   index: number;
 }) {
+  const { t } = useLanguage();
   const videoRef = useRef<HTMLVideoElement>(null);
+  const copy = t.watch.videos.find((v) => v.id === video.id)!;
 
   const handleTimeUpdate = () => {
     const el = videoRef.current;
@@ -42,7 +45,7 @@ function PerformanceVideoCard({
           onTimeUpdate={handleTimeUpdate}
           className="h-full w-full object-contain"
         >
-          Your browser does not support video playback.
+          {t.watch.noVideo}
         </video>
         <span className="absolute top-3 right-3 rounded-full bg-dark-brown/80 px-2.5 py-1 text-xs font-medium text-gold">
           {video.duration}
@@ -50,25 +53,25 @@ function PerformanceVideoCard({
       </div>
       <div className="p-5">
         <h3 className="font-[family-name:var(--font-cormorant)] text-xl font-semibold text-ivory">
-          {video.title}
+          {copy.title}
         </h3>
-        <p className="mt-1 text-sm text-gold/70">{video.titleTamil}</p>
-        <p className="mt-2 text-xs text-cream/50">
-          R S T Rajan · Puthu Roja Orchestra
-        </p>
+        <p className="mt-1 text-sm text-gold/70">{copy.titleTamil}</p>
+        <p className="mt-2 text-xs text-cream/50">{t.watch.credit}</p>
       </div>
     </motion.div>
   );
 }
 
 export function PerformanceVideos() {
+  const { t } = useLanguage();
+
   return (
     <section id="songs" className="relative bg-ivory py-24 md:py-32">
       <div className="mx-auto w-full max-w-6xl px-6 lg:px-8">
         <SectionHeading
-          label="Watch"
-          title="Performance Clips"
-          subtitle="One-minute highlights — live, family, Hindi & Tamil songs by R S T Rajan"
+          label={t.watch.label}
+          title={t.watch.title}
+          subtitle={t.watch.subtitle}
         />
 
         <div className="mt-12 grid gap-6 sm:grid-cols-2">
