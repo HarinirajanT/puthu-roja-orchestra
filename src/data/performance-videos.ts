@@ -36,6 +36,20 @@ export const performanceVideos = [
     src: "/video/tamil-song.mp4",
     duration: "1:00",
   },
+  {
+    id: "stage",
+    title: "Stage Performance",
+    titleTamil: "மேடை நிகழ்ச்சி",
+    src: "/video/stage-performance.mp4",
+    duration: "1:00",
+  },
+  {
+    id: "orchestra",
+    title: "Orchestra Performance",
+    titleTamil: "ஆர்க்கஸ்ட்ரா நிகழ்ச்சி",
+    src: "/video/orchestra-performance.mp4",
+    duration: "0:55",
+  },
 ] satisfies PerformanceVideo[];
 
 export const welcomeVideo = performanceVideos[0].src;

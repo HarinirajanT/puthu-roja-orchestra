@@ -83,6 +83,8 @@ export const ta: Translations = {
       { id: "family", title: "குடும்ப நிகழ்ச்சி", titleTamil: "குடும்ப நிகழ்ச்சி" },
       { id: "hindi", title: "ஹிந்தி பாடல்", titleTamil: "ஹிந்தி பாடல்" },
       { id: "tamil", title: "தமிழ் பாடல்", titleTamil: "தமிழ் பாடல்" },
+      { id: "stage", title: "மேடை நிகழ்ச்சி", titleTamil: "மேடை நிகழ்ச்சி" },
+      { id: "orchestra", title: "ஆர்க்கஸ்ட்ரா நிகழ்ச்சி", titleTamil: "ஆர்க்கஸ்ட்ரா நிகழ்ச்சி" },
     ],
   },
   services: {

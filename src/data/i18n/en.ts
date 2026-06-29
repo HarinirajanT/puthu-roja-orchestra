@@ -96,7 +96,7 @@ export const en: Translations = {
   watch: {
     label: "Watch",
     title: "Performance Clips",
-    subtitle: "One-minute highlights — live, family, Hindi & Tamil songs by R S T Rajan",
+    subtitle: "Performance highlights — live songs and orchestra clips by R S T Rajan",
     credit: "R S T Rajan · Puthu Roja Orchestra",
     noVideo: "Your browser does not support video playback.",
     videos: [
@@ -104,6 +104,8 @@ export const en: Translations = {
       { id: "family", title: "Family Performance", titleTamil: "குடும்ப நிகழ்ச்சி" },
       { id: "hindi", title: "Hindi Song", titleTamil: "ஹிந்தி பாடல்" },
       { id: "tamil", title: "Tamil Song", titleTamil: "தமிழ் பாடல்" },
+      { id: "stage", title: "Stage Performance", titleTamil: "மேடை நிகழ்ச்சி" },
+      { id: "orchestra", title: "Orchestra Performance", titleTamil: "ஆர்க்கஸ்ட்ரா நிகழ்ச்சி" },
     ],
   },
   services: {
