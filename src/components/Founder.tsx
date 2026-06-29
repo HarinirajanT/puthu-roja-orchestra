@@ -68,16 +68,18 @@ export function Founder() {
               ))}
             </div>
 
-            <div className="mt-10 grid grid-cols-2 gap-4 sm:grid-cols-4">
+            <div className="mt-10 grid grid-cols-2 gap-3 sm:gap-4">
               {t.founder.stats.map((stat) => (
                 <div
                   key={stat.label}
-                  className="rounded-xl border border-gold/15 bg-cream p-4 text-center"
+                  className="flex min-h-[5.5rem] min-w-0 flex-col items-center justify-center rounded-xl border border-gold/15 bg-cream px-2 py-4 text-center sm:min-h-[6rem] sm:px-3"
                 >
-                  <p className="font-[family-name:var(--font-cormorant)] text-3xl font-bold text-gold">
+                  <p className="font-[family-name:var(--font-cormorant)] text-lg font-bold leading-snug text-gold sm:text-xl lg:text-2xl">
                     {stat.value}
                   </p>
-                  <p className="mt-1 text-xs text-dark-brown/50">{stat.label}</p>
+                  <p className="mt-1.5 text-[10px] uppercase tracking-wide text-dark-brown/50 sm:text-xs">
+                    {stat.label}
+                  </p>
                 </div>
               ))}
             </div>
